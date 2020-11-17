@@ -30,4 +30,23 @@ export class AppComponent implements OnInit {
       console.log(profile);
     }).catch(err => console.error(err));
   }
+
+  sendMessage(): void {
+    if (!liff.isInClient()) {
+      this.sendAlertIfNotInClient();
+    } else {
+      liff.sendMessages([{
+        'type': 'text',
+        'text': `You've successfully sent a message! Hooray!`
+      }]).then(() => {
+        window.alert('Message sent');
+      }).catch((error) => {
+        window.alert('Error sending message: ' + error);
+      });
+    }
+  }
+
+  sendAlertIfNotInClient(): void {
+    window.alert('You not logged in');
+  }
 }
