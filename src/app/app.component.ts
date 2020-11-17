@@ -24,6 +24,8 @@ export class AppComponent implements OnInit {
   }
 
   runApp(): void {
+    const idToken = liff.getIDToken();
+    console.log(idToken);
     liff.getProfile().then(profile => {
       console.log(profile);
     }).catch(err => console.error(err));
